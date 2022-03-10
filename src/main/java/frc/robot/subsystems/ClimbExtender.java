@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.util.ControllerFactory;
 import frc.robot.controls.ClimbOperator;
-import frc.robot.controls.Operator;
 import frc.robot.robotConstants.climbExtender.DonkClimbExtenderConstants;
 
 
@@ -39,7 +38,7 @@ public class ClimbExtender extends SubsystemBase {
       side = "Right"; // the direction for shuffleboard's use
     }
 
-    // the lowest tick limit is 0, and must be checked every 10 milliseconds
+    // the lowest tick limit is 1000, and must be checked every 10 milliseconds
     m_motor.configReverseSoftLimitThreshold(1000, 10);
 
     // converts the length of the arm in inches to ticks and makes that the maximum tick limit, it's checked every 10 milliseconds
@@ -61,13 +60,7 @@ public class ClimbExtender extends SubsystemBase {
   }
 
   public boolean reachedSetpoint() {
-    // if the current tick position is within the setpoint's range (setpoint +- 10), return true, otherwise return false
-    //return extenderPID.atSetpoint();
-    // System.out.println(side + " extension: " + currentExtensionRaw() + ", setpoint: " + setpoint);
-    // System.out.println(currentExtensionRaw() < setpoint + constants.kExtenderTolerance);
-    // System.out.println(currentExtensionRaw() > setpoint - constants.kExtenderTolerance);
-    //possibly the issue is that they don't both reach the setpoint at the same time? no probably not
-
+    // if the current extension is within tolerance, return true, otherwise return false
     return currentExtensionRaw() < setpoint + constants.kExtenderTolerance && currentExtensionRaw() > setpoint - constants.kExtenderTolerance;
   }
 
@@ -108,11 +101,6 @@ public class ClimbExtender extends SubsystemBase {
   public void set(double distance) {
     setpoint = distance;
   }
-
-  // returns the current extension in inches
-  // public double currentExtension() {
-  //   return m_motor.getSelectedSensorPosition() - offset;
-  // }
 
   // returns the current extension in ticks
   public double currentExtensionRaw() {
