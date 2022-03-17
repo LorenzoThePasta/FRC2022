@@ -25,7 +25,7 @@ public class CargoRotator extends SubsystemBase {
   public CargoRotator() {
     encoder = new DutyCycleEncoder(constants.kArmEncoder);
     m_motor = ControllerFactory.createTalonFX(constants.kArmMotor, constants.kSupplyCurrentLimit,
-        constants.kSupplyTriggerThreshold, constants.kSupplyTriggerDuration, constants.kCoast);
+        constants.kSupplyTriggerThreshold, constants.kSupplyTriggerDuration, constants.kNeutralMode);
 
     // set the tolerance allowed for the PID
     cargoRotatorPID.setTolerance(constants.kArmTolerance);
@@ -124,23 +124,23 @@ public class CargoRotator extends SubsystemBase {
     return (constants.kStowPos == setpoint);
   }
 
-  public boolean isFrontOutakeNear() {
+  public boolean isFrontOuttakeNear() {
     return (constants.kFrontOuttakeNearPos == setpoint);
   }
 
-  public boolean isFrontOutakeFar() {
+  public boolean isFrontOuttakeFar() {
     return (constants.kFrontOuttakeFarPos == setpoint);
   }
 
   public boolean isFront(){
-    return isFrontOutakeFar() || isFrontOutakeNear();
+    return isFrontOuttakeFar() || isFrontOuttakeNear();
   }
 
-  public boolean isBackOutakeNear() {
+  public boolean isBackOuttakeNear() {
     return (constants.kBackOuttakeNearPos == setpoint);
   }
 
-  public boolean isBackOutakeFar() {
+  public boolean isBackOuttakeFar() {
     return (constants.kBackOuttakeFarPos == setpoint);
   }
   public boolean isEnabled() {

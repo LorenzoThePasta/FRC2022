@@ -32,7 +32,6 @@ import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.simulation.DifferentialDrivetrainSim;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -41,17 +40,16 @@ import ctre_shims.TalonEncoder;
 import ctre_shims.TalonEncoderSim;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants;
-import frc.robot.controls.Driver;
 
 public class Drivetrain extends SubsystemBase {
 
   //change this to use constants from a different robot
   public static DonkDriveConstants constants = new DonkDriveConstants();
 
-  WPI_TalonFX m_leftMotor1 = ControllerFactory.createTalonFX(constants.leftMotorPorts[0], constants.kSupplyCurrentLimit, constants.kSupplyTriggerThreshold, constants.kSupplyTriggerDuration, constants.kIsMainCoast);
-  WPI_TalonFX m_rightMotor1 = ControllerFactory.createTalonFX(constants.rightMotorPorts[0], constants.kSupplyCurrentLimit, constants.kSupplyTriggerThreshold, constants.kSupplyTriggerDuration, constants.kIsMainCoast);
-  WPI_TalonFX m_leftMotor2 = ControllerFactory.createTalonFX(constants.leftMotorPorts[1], constants.kSupplyCurrentLimit, constants.kSupplyTriggerThreshold, constants.kSupplyTriggerDuration, constants.kIsCoast);
-  WPI_TalonFX m_rightMotor2 = ControllerFactory.createTalonFX(constants.rightMotorPorts[1], constants.kSupplyCurrentLimit, constants.kSupplyTriggerThreshold, constants.kSupplyTriggerDuration, constants.kIsCoast);
+  WPI_TalonFX m_leftMotor1 = ControllerFactory.createTalonFX(constants.leftMotorPorts[0], constants.kSupplyCurrentLimit, constants.kSupplyTriggerThreshold, constants.kSupplyTriggerDuration, constants.kMainNeutralMode);
+  WPI_TalonFX m_rightMotor1 = ControllerFactory.createTalonFX(constants.rightMotorPorts[0], constants.kSupplyCurrentLimit, constants.kSupplyTriggerThreshold, constants.kSupplyTriggerDuration, constants.kMainNeutralMode);
+  WPI_TalonFX m_leftMotor2 = ControllerFactory.createTalonFX(constants.leftMotorPorts[1], constants.kSupplyCurrentLimit, constants.kSupplyTriggerThreshold, constants.kSupplyTriggerDuration, constants.kNeutralMode);
+  WPI_TalonFX m_rightMotor2 = ControllerFactory.createTalonFX(constants.rightMotorPorts[1], constants.kSupplyCurrentLimit, constants.kSupplyTriggerThreshold, constants.kSupplyTriggerDuration, constants.kNeutralMode);
   
   private PhoenixMotorControllerGroup m_leftMotors;
   private PhoenixMotorControllerGroup m_rightMotors;
@@ -175,6 +173,13 @@ public class Drivetrain extends SubsystemBase {
     m_rightMotor1.setNeutralMode(NeutralMode.Coast);
     m_leftMotor2.setNeutralMode(NeutralMode.Coast);
     m_rightMotor2.setNeutralMode(NeutralMode.Coast);
+  }
+
+  public void resetNeutralMode() {
+    m_leftMotor1.setNeutralMode(constants.kMainNeutralMode);
+    m_rightMotor1.setNeutralMode(constants.kMainNeutralMode);
+    m_leftMotor2.setNeutralMode(constants.kNeutralMode);
+    m_rightMotor2.setNeutralMode(constants.kNeutralMode);
   }
 
   public void shiftDrive(double throttle, double turn) {

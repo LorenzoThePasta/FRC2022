@@ -7,10 +7,8 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
-import frc.robot.util.ShuffleboardManager;
 
 /**
  * Drives a certain distance
@@ -38,6 +36,7 @@ public class DriveDistance extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     RobotContainer.m_drive.tankDrive(0, 0);
+    RobotContainer.m_drive.resetNeutralMode();
   }
 
   // @Override

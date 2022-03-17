@@ -20,7 +20,7 @@ public class CargoBelt extends SubsystemBase {
     constants.kSupplyCurrentLimit,
     constants.kSupplyTriggerThreshold, 
     constants.kSupplyTriggerDuration,
-    constants.kCoast
+    constants.kNeutralMode
   );
 
   private boolean enabled = false;

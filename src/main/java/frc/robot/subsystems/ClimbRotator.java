@@ -8,7 +8,6 @@ import frc.robot.util.LimitSwitch;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.DutyCycleEncoder;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ClimbRotator extends SubsystemBase {
@@ -30,7 +29,7 @@ public class ClimbRotator extends SubsystemBase {
     // if the arm is left, the encoder value is inverted && the objects are assigned correctly
     if (isLeft) {
       encoder = new DutyCycleEncoder(constants.kArmLeftEncoder); // initializes the through bore
-      m_motor = ControllerFactory.createTalonFX(constants.kArmLeftMotor , constants.kSupplyCurrentLimit, constants.kSupplyTriggerThreshold, constants.kSupplyTriggerDuration, constants.kCoast); // initializes the motor
+      m_motor = ControllerFactory.createTalonFX(constants.kArmLeftMotor , constants.kSupplyCurrentLimit, constants.kSupplyTriggerThreshold, constants.kSupplyTriggerDuration, constants.kNeutralMode); // initializes the motor
       side = "Left"; // the direction for shuffleboard's use
       m_motor.setInverted(true); // inverts the motor
       encoderOffset = constants.kArmLeftEncoderOffset; // sets an offset for the encoder
@@ -38,10 +37,10 @@ public class ClimbRotator extends SubsystemBase {
       limitSwitchLower = new LimitSwitch(constants.kLeftLimitSwitchLower , constants.kLimitSwitchDebouncer);
       limitSwitchUpper = new LimitSwitch(constants.kLeftLimitSwitchUpper , constants.kLimitSwitchDebouncer);
     }
-    // otherwise, use the normal encoder value and set the motorports to the right
+    // otherwise, use the normal encoder value and set the motor ports to the right
     else {
       encoder = new DutyCycleEncoder(constants.kArmRightEncoder); // initializes the through bore
-      m_motor = ControllerFactory.createTalonFX(constants.kArmRightMotor , constants.kSupplyCurrentLimit, constants.kSupplyTriggerThreshold, constants.kSupplyTriggerDuration, constants.kCoast); // initializes the motor
+      m_motor = ControllerFactory.createTalonFX(constants.kArmRightMotor , constants.kSupplyCurrentLimit, constants.kSupplyTriggerThreshold, constants.kSupplyTriggerDuration, constants.kNeutralMode); // initializes the motor
       side = "Right"; // the direction for shuffleboard's use
       encoderOffset = constants.kArmRightEncoderOffset; // sets an offset for the encoder
 

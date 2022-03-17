@@ -22,7 +22,7 @@ public class CargoShooter extends SubsystemBase {
 
   DonkCargoShooterConstants constants = new DonkCargoShooterConstants();
 
-  private final WPI_TalonFX m_cargoShooterMotor = ControllerFactory.createTalonFX(constants.kCargoShooterMotorPort , constants.kSupplyCurrentLimit, constants.kSupplyTriggerThreshold, constants.kSupplyTriggerDuration, constants.kCoast);
+  private final WPI_TalonFX m_cargoShooterMotor = ControllerFactory.createTalonFX(constants.kCargoShooterMotorPort , constants.kSupplyCurrentLimit, constants.kSupplyTriggerThreshold, constants.kSupplyTriggerDuration, constants.kNeutralMode);
   private final TalonEncoder m_cargoShooterEncoder = new TalonEncoder(m_cargoShooterMotor);
 
   public PIDController cargoShooterPID = new PIDController(constants.kP, constants.kI, constants.kD);

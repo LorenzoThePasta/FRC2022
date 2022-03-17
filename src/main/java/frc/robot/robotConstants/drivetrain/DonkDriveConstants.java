@@ -1,5 +1,7 @@
 package frc.robot.robotConstants.drivetrain;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+
 import edu.wpi.first.math.numbers.N2;
 import edu.wpi.first.math.system.LinearSystem;
 import edu.wpi.first.math.system.plant.DCMotor;
@@ -58,6 +60,6 @@ public class DonkDriveConstants {
   public final double kSupplyCurrentLimit = 40;
   public final double kSupplyTriggerThreshold = 50;
   public final double kSupplyTriggerDuration = 0.3;
-  public final boolean kIsCoast = true;
-  public final boolean kIsMainCoast = true;
+  public final NeutralMode kNeutralMode = NeutralMode.Coast;
+  public final NeutralMode kMainNeutralMode =  NeutralMode.Coast;
 }

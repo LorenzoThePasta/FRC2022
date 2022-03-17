@@ -1,5 +1,7 @@
 package frc.robot.robotConstants.cargoRotator;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+
 public class DonkCargoRotatorConstants {
     // the duty cycle encoder ports of the arm
     public final int kArmEncoder = 4;
@@ -46,5 +48,5 @@ public class DonkCargoRotatorConstants {
     public final double kSupplyCurrentLimit = 30;
     public final double kSupplyTriggerThreshold = 30;
     public final double kSupplyTriggerDuration = 0;
-    public final boolean kCoast = false;
+    public final NeutralMode kNeutralMode = NeutralMode.Brake;
 }
