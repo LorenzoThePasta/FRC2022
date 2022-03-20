@@ -246,6 +246,10 @@ public class Drivetrain extends SubsystemBase {
     return m_driveKinematics;
   }
 
+  public boolean isPitchAbove(double pitch) {
+    return m_navX.getPitch() > pitch;
+  }
+
   
   @Override
   public void periodic() {

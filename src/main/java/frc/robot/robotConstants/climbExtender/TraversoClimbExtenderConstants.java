@@ -44,4 +44,6 @@ public class TraversoClimbExtenderConstants {
   public final boolean kCoast = false;
 
   public final boolean kAlwaysZero = false;
+
+  public final double kMinPitchForExtension = 0; //TODO: set this?
 }
