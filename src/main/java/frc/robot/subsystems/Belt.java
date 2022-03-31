@@ -38,7 +38,7 @@ public class Belt extends SubsystemBase {
     }
   }
   
-  public void setPower(double power) {
+  public void setPower(double power) { 
     m_motorPower = power;
   }
   
@@ -47,11 +47,19 @@ public class Belt extends SubsystemBase {
   }
 
   public void setStop() {
-    m_motorPower = 0;
+    m_motorPower = 0; //
+  }
+  
+  public double getStop(){
+    return m_motorPower; 
+  }
+
+  public double getPower() {
+    return m_motorPower;
   }
 
   public void enable() {
-    m_enabled = true;
+    m_enabled = true; // 
   }
 
   public void disable() {
